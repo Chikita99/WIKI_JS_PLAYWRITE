@@ -30,3 +30,18 @@ test('article counter link check - Language', async ({ wikiMain }) => {
     const link = await wikiMain.getCounterLink('English language')
     expect(await link.getAttribute('href')).toBe('/wiki/English_language')
 })
+
+test('check search form on header', async ({ wikiMain }) => {
+    await expect(await wikiMain.getSearchForm()).toHaveAttribute(
+        'placeholder',
+        'Search Wikipedia'
+    )
+    await expect(await wikiMain.getSearchIcon()).toBeVisible(true)
+    await expect(await wikiMain.getSearchButton()).toHaveText('Search')
+})
+
+test('check search logic', async ({ page, wikiMain }) => {
+    await (await wikiMain.getSearchForm()).fill('Car')
+    await (await wikiMain.getSearchButton()).click()
+    await expect(await page).toHaveURL('https://en.wikipedia.org/wiki/Car')
+})
