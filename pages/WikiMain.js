@@ -8,9 +8,6 @@ export class WikiMain {
     articleCountText = '#articlecount'
     articleCountLink = (specialTitle) =>
         `//div[@id='articlecount']/a[@title='${specialTitle}']`
-    searchForm = '#searchInput'
-    searchIcon = '.cdx-text-input__icon.cdx-text-input__start-icon'
-    searchButton = '.cdx-button.cdx-search-input__end-button'
 
     async getMainTitle() {
         const title = await this.page.locator(this.mainTitle).textContent()
@@ -36,20 +33,5 @@ export class WikiMain {
             `xpath=${this.articleCountLink(specialTitle)}`
         )
         return countLink
-    }
-
-    async getSearchForm() {
-        const search = await this.page.locator(this.searchForm)
-        return search
-    }
-
-    async getSearchIcon() {
-        const icon = await this.page.locator(this.searchIcon)
-        return icon
-    }
-
-    async getSearchButton() {
-        const button = await this.page.locator(this.searchButton)
-        return button
     }
 }
