@@ -1,6 +1,6 @@
 import { test } from '../fixture/baseFixture'
 import { expect } from '@playwright/test'
-import { loginWithApi } from '../fixture/apiFixture'
+import { loginWithApi } from '../api/loginApi'
 
 test('Login check', async ({ page }) => {
     const loginData = await loginWithApi(page)
